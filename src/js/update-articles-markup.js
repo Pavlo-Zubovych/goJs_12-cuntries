@@ -1,8 +1,9 @@
 import articlesTpl from '../templates/articles.hbs';
 import refs from './refs';
 
-function updateArticlesMarkup(articles) {
-  const markup = articlesTpl(articles);
+function updateArticlesMarkup(hits) {
+  console.log(hits); //
+  const markup = articlesTpl(hits);
   refs.articlesContainer.insertAdjacentHTML('beforeend', markup);
 }
 

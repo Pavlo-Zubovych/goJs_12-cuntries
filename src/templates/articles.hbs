@@ -1,7 +1,16 @@
 {{#each this}}
-<img src="{{urlToImage}}" alt="logo" width="320">
-<h1>{{title}}</h1>
-<h2>
-    <li><a href="{{url}}" target="_blank" rel="noopener noreferrer">{{title}}</a></li>
-</h2>
+<h1 class="tiilte-post">{{tags}}</h1>
+<img src="{{previewURL}}" alt="logo" width="320">
+
+<ul class="descreption-foto">
+    <li>Autor : {{user}}.</li>
+    <li>Views: {{views}}.</li>
+    <li>Downloads: {{downloads}}.</li>
+</ul>
+{{!-- <p>
+    Autor : {{user}}. Downloads: {{downloads}}.
+    <li><a href="{{pageURL}}" target="_blank" rel="noopener noreferrer">{{title}}</a></li>
+
+</p> --}}
+<hr>
 {{/each}}
