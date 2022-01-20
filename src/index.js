@@ -12,8 +12,13 @@ refs.searchForm.addEventListener('submit', event => {
 
   refs.articlesContainer.innerHTML = '';
   form.reset();
+
   fetchArcticles(inputValue).then(updateArticlesMarkup);
 });
+
+refs.loadMoreBtn.addEventListener('click', () =>
+  fetchArcticles(inputValue).then(updateArticlesMarkup),
+);
 
 //   .catch(error => console.log(error));
 
