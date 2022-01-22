@@ -1,11 +1,12 @@
 {{#each this}}
-<h1 class="tiilte-post">{{tags}}</h1>
-<img src="{{previewURL}}" alt="logo" width="320">
+<h2 class="tiilte-post">{{title}}</h2>
+<img src="{{urlToImage}}" alt="logo" width="320">
 
 <ul class="descreption-foto">
-    <li>Autor : {{user}}.</li>
-    <li>Views: {{views}}.</li>
-    <li>Downloads: {{downloads}}.</li>
+    <li>Description: {{description}}.</li>
+    <li>Published at: {{views}}.</li>
+    <li>Autor : {{author}}.</li>
+    <li>Link: <a href="{{url}}" target="_blank" rel="noopener noreferrer">{{title}}</a>.</li>
 </ul>
 {{!-- <p>
     Autor : {{user}}. Downloads: {{downloads}}.
