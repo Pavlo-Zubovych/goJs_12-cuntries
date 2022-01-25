@@ -3,22 +3,32 @@ import fetchArcticles from './js/fetch-articles';
 import updateArticlesMarkup from './js/update-articles-markup';
 import refs from './js/refs';
 
+let searchQuery = '';
+let page = 1;
+
 refs.searchForm.addEventListener('submit', event => {
   event.preventDefault();
 
   const form = event.currentTarget;
-  const inputValue = form.elements.query.value;
+  searchQuery = form.elements.query.value;
   //   console.log(inputValue);
 
   refs.articlesContainer.innerHTML = '';
   form.reset();
 
-  fetchArcticles(inputValue).then(updateArticlesMarkup);
+  page = 1;
+  fetchArcticles(searchQuery, page).then(articles => {
+    updateArticlesMarkup(articles);
+    page += 1;
+  });
 });
 
-refs.loadMoreBtn.addEventListener('click', () =>
-  fetchArcticles(inputValue).then(updateArticlesMarkup),
-);
+refs.loadMoreBtn.addEventListener('click', () => {
+  fetchArcticles(searchQuery, page).then(articles => {
+    updateArticlesMarkup(articles);
+    page += 1;
+  });
+});
 
 //   .catch(error => console.log(error));
 
