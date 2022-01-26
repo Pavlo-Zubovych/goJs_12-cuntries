@@ -2,45 +2,58 @@ import './sass/main.scss';
 import newsService from './js/news-service';
 import updateArticlesMarkup from './js/update-articles-markup';
 import refs from './js/refs';
+// import fetchArcticles from './js/fetch-articles';
 
-refs.searchForm.addEventListener('submit', event => {
+const moreLoadBtn = {
+  enable() {
+    refs.loadMoreBtn.disabled = false;
+    refs.loadMoreBtnLoader.textContent = 'Показати більше!';
+    refs.loadMoreBtnSpinner.classList.add('is-hidden');
+  },
+
+  disabled() {
+    refs.loadMoreBtn.disabled = true;
+    refs.loadMoreBtnLoader.textContent = 'Загружаємо  ...  ... ...   ... ... ... ... . ...';
+    refs.loadMoreBtnSpinner.classList.remove('is-hidden');
+  },
+
+  show() {
+    refs.loadMoreBtn.classList.remove('is-hidden');
+  },
+};
+
+refs.searchForm.addEventListener('submit', rerchFormSubmitHandler);
+refs.loadMoreBtn.addEventListener('click', fetchArcticlesS);
+
+function rerchFormSubmitHandler(event) {
   event.preventDefault();
 
   const form = event.currentTarget;
   newsService.query = form.elements.query.value;
+
   //   console.log(inputValue);
 
-  refs.articlesContainer.innerHTML = '';
-  form.reset();
-
+  clearArticlesContainer();
   newsService.resetPage();
+  fetchArcticlesS();
+  form.reset();
+}
+
+function fetchArcticlesS() {
+  moreLoadBtn.disabled();
+
   newsService.fetchArcticles().then(articles => {
     updateArticlesMarkup(articles);
+    moreLoadBtn.show();
+    moreLoadBtn.enable();
   });
-});
+}
 
-refs.loadMoreBtn.addEventListener('click', () => {
-  newsService.fetchArcticles().then(articles => {
-    updateArticlesMarkup(articles);
-  });
-});
+function clearArticlesContainer() {
+  refs.articlesContainer.innerHTML = '';
+}
 
-//   .catch(error => console.log(error));
-
-// const options = {
-//   method: 'GET',
-//   heders: {
-//     Accept: 'application/json',
-//   },
-// };
-
-// fetch('https://jsonplaceholder.typicode.com/users')
-//   .then(response => response.json())
-//   .then(data => console.log(data));
-
-// fetch('http://hn.algolia.com/api/v1/search?query=react&tags=story')
-//   .then(response => response.json())
-//   .then(data => console.log(data));
-
-//   @PnArE2A,Cpp*hQ
-//   576cf4a5a3a549e5b6a6e0cd2e57f1cd
+// window.scrollTo({
+//   top: document.documentElement.offsetHeight,
+//   behavior: 'smooth',
+// });
