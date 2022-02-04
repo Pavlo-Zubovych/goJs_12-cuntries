@@ -19,6 +19,8 @@ export default fetchArcticles;
 
 // `https://pixabay.com/api/?key=${apiKey}&q=${searchQuery}&image_type=photo&lang=ru`
 
+// https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=что_искать&page=номер_страницы&per_page=12&key=твой_ключ
+
 //   return fetch(url /*, options*/)
 //     .then(response => response.json())
 //     .then(({ hits }) => hits)
