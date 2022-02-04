@@ -1,3 +1,5 @@
+// Пошук новин з можливістю завантажити більше
+
 import './sass/main.scss';
 import newsService from './js/news-service';
 import updateArticlesMarkup from './js/update-articles-markup';
